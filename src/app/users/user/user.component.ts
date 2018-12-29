@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
     // Also, oninit is a good approach if we navigate for the first time otherwise the data won't get updated for the next user.
     // So, to handle that we use params(which are observables) on the route instead of snapshot. This part of code is executed
     //  whenever the params change. Also, note that its needed only when we load some data from within this component, as otherwise
-    // the component is recreated.
+    // the component is recreated. THe subscription is cleanedup when the component is destroyed.
     this.user = {
       id: this.route.snapshot.params['id'],
       name: this.route.snapshot.params['name'],

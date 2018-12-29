@@ -15,10 +15,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 const appRoutes: Routes =[
   {path: '', component: HomeComponent},
-  {path: 'users', component: UsersComponent},
-  {path: 'users/:id/:name', component: UserComponent}, // /: is used to get the parameters on the path.for Ex: users/123/Peter
-  {path: 'servers', component: ServersComponent}
-];
+  {path: 'users', component: UsersComponent, children: [
+    {path: ':id/:name', component: UserComponent}, // /: is used to get the parameters on the path.for Ex: users/123/Peter
+  ]},
+  
+  {path: 'servers', component: ServersComponent, children: [
+    {path: ':id', component: ServerComponent},
+    {path: ':id/edit', component: EditServerComponent}
+  ]} // child components need seperate outlet as these should be loaded nested into the parent component.
+ ];
 
 @NgModule({
   declarations: [
